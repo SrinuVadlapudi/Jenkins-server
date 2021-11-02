@@ -7,7 +7,7 @@ environment {
 	stage ('credential') {
 	 steps {
 	    sh 'mkdir -p creds'
-		sh 'echo $Google_key | base64 > ./sri999/srinu2-14f292a3a4e3.json'
+		sh 'echo $Google_key | base64 > ./creds/srinu2-14f292a3a4e3.json'
 		}
 		}
     stage ('startup') {
@@ -19,15 +19,7 @@ environment {
 		sh 'ls' 
 		}
 		}
-		
-	stage ('create instance template') {
-	 steps {
-	 
-	 sh 'gcloud compute instance-templates create nginx-lb-template --metadata-from-file startup-script=./startup/startup.sh --tags=http-server'
-	 sh 'sleep 1'
-	 
-	 }
-	}
+	
 	
 	stage ('Create a target pool') {
 		steps {
