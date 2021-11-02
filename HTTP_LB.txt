@@ -20,6 +20,15 @@ environment {
 		}
 		}
 	
+		
+	stage ('create instance template') {
+	 steps {
+	 
+	 sh 'gcloud compute instance-templates create nginx-lb-template --metadata-from-file startup-script=./startup/startup.sh --tags=http-server'
+	 sh 'sleep 1'
+	 
+	 }
+	}
 	
 	stage ('Create a target pool') {
 		steps {
